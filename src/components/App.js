@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import * as routes from '../constants/routes.js';
 import '../App.css';
+import Navigation from './Navigation';
 import UserInfo from './UserInfo';
 import AddUser from './AddUser';
+import Address from './Address';
+import Orders from './Orders';
+import Wishes from './Wishes';
 
 const users = [
   {
@@ -93,6 +99,29 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Users Manager</h1>
+
+
+        <BrowserRouter>
+          <div>
+            <Navigation />
+            <hr />
+
+            <Switch>
+              <Route
+                exact path={routes.ADDRESS}
+                component={() => <Address />}
+              />
+              <Route
+                exact path={routes.ORDERS}
+                component={() => <Orders />}
+              />
+              <Route
+                exact path={routes.WISHES}
+                component={() => <Wishes />}
+              />
+            </Switch>
+          </div>
+        </BrowserRouter>
 
         <AddUser
           onAdd={this.onAdd}
