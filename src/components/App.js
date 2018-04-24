@@ -3,11 +3,12 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import * as routes from '../constants/routes.js';
 import '../App.css';
 import Navigation from './Navigation';
-import UserInfo from './UserInfo';
+import UserContainer from './UserContainer';
 import AddUser from './AddUser';
 import Address from './Address';
 import Orders from './Orders';
 import Wishes from './Wishes';
+
 
 const users = [
   {
@@ -108,6 +109,22 @@ class App extends Component {
 
             <Switch>
               <Route
+                exact path={routes.ADDUSER}
+                component={() =>
+                  <AddUser
+                    onAdd={this.onAdd}
+                  />}
+              />
+              <Route
+                exact path={routes.USER}
+                component={() =>
+                  <UserContainer
+                    users={this.state.users}
+                    onDelete={this.onDelete}
+                    onEditSubmit={this.onEditSubmit}
+                  />}
+              />
+              <Route
                 exact path={routes.ADDRESS}
                 component={() => <Address />}
               />
@@ -122,23 +139,6 @@ class App extends Component {
             </Switch>
           </div>
         </BrowserRouter>
-
-        <AddUser
-          onAdd={this.onAdd}
-        />
-
-        {
-          this.state.users.map(user => {
-            return (
-              <UserInfo
-                key={user.id}
-                {...user}
-                onDelete={this.onDelete}
-                onEditSubmit={this.onEditSubmit}
-              />
-            )
-          })
-        }
       </div>
     )
   }
