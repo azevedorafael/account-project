@@ -10,16 +10,17 @@ class AddUser extends Component {
     onSubmit(event) {
         event.preventDefault();
 
-        this.props.onAdd(this.idInput.value, this.nameInput.value, this.emailInput.value, this.addressInput.value);
+        this.props.onAdd(this.idInput.value, this.nameInput.value, this.lastNameInput.value, this.emailInput.value, this.cpfInput.value, this.passwordInput.value);
 
         this.idInput.value = '';
         this.nameInput.value = '';
+        this.lastNameInput.value = '';
         this.emailInput.value = '';
-        this.addressInput.value = '';
+        this.cpfInput.value = '';
+        this.passwordInput.value = '';
     }
 
     render() {
-        const { id, name, email, address } = this.props;
 
         return (
             <form onSubmit={this.onSubmit}>
@@ -33,12 +34,20 @@ class AddUser extends Component {
                     ref={nameInput => this.nameInput = nameInput}
                 />
                 <input
+                    placeholder='Last Name'
+                    ref={lastNameInput => this.lastNameInput = lastNameInput}
+                />
+                <input
                     placeholder='Email'
                     ref={emailInput => this.emailInput = emailInput}
                 />
                 <input
-                    placeholder='Address'
-                    ref={addressInput => this.addressInput = addressInput}
+                    placeholder='CPF'
+                    ref={cpfInput => this.cpfInput = cpfInput}
+                />
+                <input
+                    placeholder='Password'
+                    ref={passwordInput => this.passwordInput = passwordInput}
                 />
                 <button>Add</button>
 

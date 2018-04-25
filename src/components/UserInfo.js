@@ -17,9 +17,8 @@ class UserInfo extends Component {
 
     onEditSubmit(e) {
         e.preventDefault();
-
-        this.props.onEditSubmit(this.idInput.value, this.nameInput.value, this.emailInput.value, this.addressInput.value, this.props.id);
-        this.setState({isEditing:false});
+        this.props.onEditSubmit(this.props.id, this.nameInput.value, this.lastNameInput.value, this.emailInput.value, this.cpfInput.value, this.passwordInput.value);
+        this.setState({ isEditing: false });
     }
 
     onDelete() {
@@ -28,7 +27,7 @@ class UserInfo extends Component {
     }
 
     render() {
-        const { id, name, email, address } = this.props;
+        const { name, lastName, email, cpf, password } = this.props;
 
         return (
             <div>
@@ -38,14 +37,14 @@ class UserInfo extends Component {
                             <form onSubmit={this.onEditSubmit}>
                                 <h3>Editing User</h3>
                                 <input
-                                    placeholder='Id'
-                                    ref={idInput => this.idInput = idInput}
-                                    defaultValue={id}
-                                />
-                                <input
                                     placeholder='Name'
                                     ref={nameInput => this.nameInput = nameInput}
                                     defaultValue={name}
+                                />
+                                <input
+                                    placeholder='Last Name'
+                                    ref={lastNameInput => this.lastNameInput = lastNameInput}
+                                    defaultValue={lastName}
                                 />
                                 <input
                                     placeholder='Email'
@@ -53,9 +52,14 @@ class UserInfo extends Component {
                                     defaultValue={email}
                                 />
                                 <input
-                                    placeholder='Address'
-                                    ref={addressInput => this.addressInput = addressInput}
-                                    defaultValue={address}
+                                    placeholder='CPF'
+                                    ref={cpfInput => this.cpfInput = cpfInput}
+                                    defaultValue={cpf}
+                                />
+                                <input
+                                    placeholder='Password'
+                                    ref={passwordInput => this.passwordInput = passwordInput}
+                                    defaultValue={password}
                                 />
                                 <button>Save</button>
                             </form>
@@ -64,8 +68,10 @@ class UserInfo extends Component {
                         (
                             <div>
                                 <span> {name}</span> {' | '}
+                                <span> {lastName}</span> {' | '}
                                 <span>{email}</span> {' | '}
-                                <span>{address}</span> {' | '}
+                                <span>{cpf}</span> {' | '}
+                                <span>{password}</span> {' | '}
                                 <button
                                     onClick={this.onEdit}
                                 >Edit</button> {' | '}

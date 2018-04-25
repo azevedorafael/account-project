@@ -14,8 +14,10 @@ const users = [
   {
     id: 1,
     name: 'User1',
+    lastName: 'LastName',
     email: 'user1@email.com',
-    address: 'Rua Um , 30',
+    cpf: '30289049902',
+    password: 'pass1234'
   },
 ];
 
@@ -50,35 +52,38 @@ class App extends Component {
     //       id: data.id,
     //       name: data.name,
     //       email: data.email,
-    //       address: data.address,
 
     //     });
     // });
 
   }
 
-  onAdd(id, name, email, address) {
+  onAdd(id, name, lastName, email, cpf, password) {
     const users = this.getUsers();
 
     users.push({
       id,
       name,
+      lastName,
       email,
-      address
+      cpf,
+      password
     });
 
     this.setState({ users });
   }
 
-  onEditSubmit(id, name, email, address, originId) {
+  onEditSubmit(id, name, lastName, email, cpf, password) {
     let users = this.getUsers();
 
     users = users.map(user => {
-      if (user.id == originId) {
+      if (user.id === id) {
         user.id = id;
         user.name = name;
+        user.lastName = lastName;
         user.email = email;
-        user.address = address;
+        user.cpf = cpf;
+        user.password = password;
       }
       return user;
     });
