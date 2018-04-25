@@ -104,9 +104,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Users Manager</h1>
-
-
         <BrowserRouter>
           <div>
             <Navigation />
